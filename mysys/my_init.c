@@ -62,6 +62,10 @@ static MYSQL_FILE instrumented_stdin;
     @retval 0 Success
     @retval 1 Error. Couldn't initialize environment
 */
+/**
+ *
+  wangyang  用于初始化 系统变量
+ */
 my_bool my_init(void)
 {
   char *str;
@@ -87,7 +91,7 @@ my_bool my_init(void)
   instrumented_stdin.m_psi= NULL;       /* not yet instrumented */
   mysql_stdin= & instrumented_stdin;
 
-  if (my_thread_global_init())
+  if (my_thread_global_init()) //wangyang 线程初始化
     return 1;
 
 #if defined(SAFE_MUTEX)
@@ -99,7 +103,7 @@ my_bool my_init(void)
 #endif
 
   /* $HOME is needed early to parse configuration files located in ~/ */
-  if ((home_dir= getenv("HOME")) != 0)
+  if ((home_dir= getenv("HOME")) != 0) //HOME 环境变量
     home_dir= intern_filename(home_dir_buff, home_dir);
 
   {

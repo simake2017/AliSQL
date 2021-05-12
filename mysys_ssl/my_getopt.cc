@@ -1292,6 +1292,9 @@ static double getopt_double(char *arg, const struct my_option *optp, int *err)
     value		Pointer to variable
 */
 
+/*
+ * wangyang **
+ */
 static void init_one_value(const struct my_option *option, void *variable,
 			   longlong value)
 {

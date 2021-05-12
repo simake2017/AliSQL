@@ -1718,6 +1718,9 @@ row_insert_for_mysql(
 	row_get_prebuilt_insert_row(prebuilt);
 	node = prebuilt->ins_node;
 
+	/**
+	 * 在这里 将 行转为 innobase 格式
+	 */
 	row_mysql_convert_row_to_innobase(node->row, prebuilt, mysql_rec);
 
 	savept = trx_savept_take(trx);

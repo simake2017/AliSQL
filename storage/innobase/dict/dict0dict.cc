@@ -1339,6 +1339,13 @@ dict_table_add_to_cache(
 #endif /* UNIV_DEBUG */
 	}
 
+	/**
+	 * wangyang @@@ 这里看起来 会比较绕 , 这里的作用其实就是 将数据 table
+	 * 插入到 hash_table_t 结构体当中 ,
+	 *
+	 * 这里的 dict_table_t 更多的是一种 插入的数据类型
+	 *
+	 */
 	/* Add table to hash table of tables */
 	HASH_INSERT(dict_table_t, name_hash, dict_sys->table_hash, fold,
 		    table);
@@ -1780,6 +1787,10 @@ dict_table_rename_in_cache(
 	memcpy(table->name, new_name, strlen(new_name) + 1);
 
 	/* Add table to hash table of tables */
+	/**
+	 * wangyang @@ 这里会进行展开 然后 显示出相应的insert 方法
+	 * 第一个参数是类型
+	 */
 	HASH_INSERT(dict_table_t, name_hash, dict_sys->table_hash, fold,
 		    table);
 

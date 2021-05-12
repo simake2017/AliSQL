@@ -305,7 +305,7 @@ bool check_if_table_exists(THD *thd, TABLE_LIST *table, bool *exists);
 extern Item **not_found_item;
 extern Field *not_found_field;
 extern Field *view_ref_found;
-extern HASH table_def_cache;
+extern HASH table_def_cache; //wangyang ** 这里是 声明了 table_def_cache 这个变量 用于存储 table 表对象
 
 /**
   clean/setup table fields and map.

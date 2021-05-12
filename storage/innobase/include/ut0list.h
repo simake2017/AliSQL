@@ -151,6 +151,9 @@ ib_list_is_empty(
 	const ib_list_t*	list);	/* in: list */
 
 /* List. */
+/**
+ * wangyang @@@ mysql 定义的双向链表
+ */
 struct ib_list_t {
 	ib_list_node_t*		first;		/*!< first node */
 	ib_list_node_t*		last;		/*!< last node */
@@ -159,6 +162,9 @@ struct ib_list_t {
 };
 
 /* A list node. */
+/**
+ * wangyang @@双向链表节点
+ */
 struct ib_list_node_t {
 	ib_list_node_t*		prev;		/*!< previous node */
 	ib_list_node_t*		next;		/*!< next node */

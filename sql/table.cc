@@ -2245,6 +2245,9 @@ static int open_binary_frm(THD *thd, TABLE_SHARE *share, uchar *head,
    7    Table definition has changed in engine
 */
 
+/*
+ * wangyang
+ */
 int open_table_from_share(THD *thd, TABLE_SHARE *share, const char *alias,
                           uint db_stat, uint prgflag, uint ha_open_flags,
                           TABLE *outparam, bool is_create_table)

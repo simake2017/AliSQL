@@ -6710,6 +6710,10 @@ ha_innobase::innobase_set_max_autoinc(
 Stores a row in an InnoDB database, to the table specified in this
 handle.
 @return	error code */
+
+/**
+ * wangyang *** 这里用于 写入行信息
+ */
 UNIV_INTERN
 int
 ha_innobase::write_row(
@@ -6859,6 +6863,9 @@ no_commit:
 
 	innobase_srv_conc_enter_innodb(prebuilt->trx);
 
+	/**
+	 * wangyang ** 具体的 行信息插入
+	 */
 	error = row_insert_for_mysql((byte*) record, prebuilt);
 	DEBUG_SYNC(user_thd, "ib_after_row_insert");
 

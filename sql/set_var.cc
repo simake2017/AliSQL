@@ -63,10 +63,18 @@ int sys_var_init()
   /* Must be already initialized. */
   DBUG_ASSERT(system_charset_info != NULL);
 
+  /**
+   * wangyagn 这里用于初始化 system_variable_hash hash 结构体
+   * 用于存储 系统变量
+   *
+   */
   if (my_hash_init(&system_variable_hash, system_charset_info, 100, 0,
                    0, (my_hash_get_key) get_sys_var_length, 0, HASH_UNIQUE))
     goto error;
 
+  /**
+   * wangyang 添加相应变量到 hash结构体中
+   */
   if (mysql_add_sys_var_chain(all_sys_vars.first))
     goto error;
 
@@ -83,6 +91,9 @@ int sys_var_add_options(std::vector<my_option> *long_options, int parse_flags)
 
   for (sys_var *var=all_sys_vars.first; var; var= var->next)
   {
+      /**
+       * wangyang 将系统变量注入到 vector数据结构体中
+       */
     if (var->register_option(long_options, parse_flags))
       goto error;
   }
@@ -170,6 +181,14 @@ sys_var::sys_var(sys_var_chain *chain, const char *name_arg,
   option.value= (uchar **)global_var_ptr();
   option.def_value= def_val;
 
+  /**
+   * wangyang 这里使用链表 进行
+   *
+   * first表示 第一个元素
+   *
+   * last 表示最后一个元素
+   *
+   */
   if (chain->last)
     chain->last->next= this;
   else
@@ -395,6 +414,10 @@ const CHARSET_INFO *get_old_charset_by_name(const char *name)
 */
 
 
+/**
+ *
+ wangyang 遍历变量 添加到 hash结构体中
+ */
 int mysql_add_sys_var_chain(sys_var *first)
 {
   sys_var *var;

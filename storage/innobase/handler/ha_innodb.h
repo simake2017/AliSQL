@@ -57,6 +57,9 @@ typedef struct st_innobase_share {
 struct row_prebuilt_t;
 
 /** The class defining a handle to an Innodb table */
+/**
+ * wangyang **** 这里是具体的存储引擎，这里是 innodb
+ */
 class ha_innobase: public handler
 {
 	row_prebuilt_t*	prebuilt;	/*!< prebuilt struct in InnoDB, used

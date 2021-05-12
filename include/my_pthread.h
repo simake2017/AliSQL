@@ -859,12 +859,12 @@ static inline int pthread_attr_getguardsize(pthread_attr_t *attr,
 struct st_my_thread_var
 {
   int thr_errno;
-  mysql_cond_t suspend;
-  mysql_mutex_t mutex;
+  mysql_cond_t suspend; /*  pthread_cond_t 条件结构体 用于线程的挂起   */
+  mysql_mutex_t mutex;    /* 互斥 结构体  */
   mysql_mutex_t * volatile current_mutex;
   mysql_cond_t * volatile current_cond;
-  pthread_t pthread_self;
-  my_thread_id id;
+  pthread_t pthread_self; /* pthread_t 结构体 */
+  my_thread_id id; /* long 类型整数  */
   int cmp_length;
   int volatile abort;
   my_bool init;

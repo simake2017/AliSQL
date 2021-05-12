@@ -1767,11 +1767,20 @@ static bool fix_max_connections(sys_var *self, THD *thd, enum_var_type type)
   return false;
 }
 
+/**
+ * wangyang @@   同时允许的最大连接数
+ *
+ * 这里面记录的都是配置 系统变量 配置参数
+ * int类型变量
+ *
+ * 里面的配置  都是系统类型变量 都是可以通过 my.cnf进行指定的
+ *
+ */
 static Sys_var_ulong Sys_max_connections(
        "max_connections", "The number of simultaneous clients allowed",
        GLOBAL_VAR(max_connections), CMD_LINE(REQUIRED_ARG),
-       VALID_RANGE(1, MAX_CONNECTIONS),
-       DEFAULT(MAX_CONNECTIONS_DEFAULT),
+       VALID_RANGE(1, MAX_CONNECTIONS), //wangyang 这里是 取值 范围 1 - 10000
+       DEFAULT(MAX_CONNECTIONS_DEFAULT), //这里是默认值 151
        BLOCK_SIZE(1),
        NO_MUTEX_GUARD,
        NOT_IN_BINLOG,
@@ -3990,6 +3999,9 @@ static bool fix_slow_log_file(sys_var *self, THD *thd, enum_var_type type)
   return fix_log(&opt_slow_logname, default_logfile_name, "-slow.log",
                  opt_slow_log, reopen_slow_log);
 }
+/**
+ * wangyang 字符串类型变量 慢查询文件位置
+ */
 static Sys_var_charptr Sys_slow_log_path(
        "slow_query_log_file", "Log slow queries to given log file. "
        "Defaults logging to hostname-slow.log. Must be enabled to activate "

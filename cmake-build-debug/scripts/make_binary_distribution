@@ -1,0 +1,1 @@
+cd /Users/wangyang/CLionProjects/AliSQL/cmake-build-debug && '/Applications/CLion.app/Contents/bin/cmake/mac/bin/cpack' -G TGZ --config CPackConfig.cmake

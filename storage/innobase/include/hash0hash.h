@@ -119,6 +119,14 @@ Assert that the mutex for the table is held */
 /*******************************************************************//**
 Inserts a struct to a hash table. */
 
+
+/**
+ * table --> hash_table_t 实例
+ * data --> dict_table_t 实例
+ * type --> dict_table_t 类型
+ * fold --> 用于 hash  折叠
+ * name --> hash_node_t 实例    hash_node_t 是 void * 类型 实例
+ */
 #define HASH_INSERT(TYPE, NAME, TABLE, FOLD, DATA)\
 do {\
 	hash_cell_t*	cell3333;\
@@ -130,9 +138,9 @@ do {\
 \
 	cell3333 = hash_get_nth_cell(TABLE, hash_calc_hash(FOLD, TABLE));\
 \
-	if (cell3333->node == NULL) {\
+	if (cell3333->node == NULL) /* wangyang  这里用于判断  这个cell 位置为空    */ {\
 		cell3333->node = DATA;\
-	} else {\
+	} else { /* 如果不为空 */  \
 		struct3333 = (TYPE*) cell3333->node;\
 \
 		while (struct3333->NAME != NULL) {\
@@ -529,8 +537,11 @@ struct hash_cell_t{
 };
 
 /* The hash table structure */
+/*
+ * wangyang @@ innodb 定义的 hash 表
+ */
 struct hash_table_t {
-	enum hash_table_sync_t	type;	/*<! type of hash_table. */
+	enum hash_table_sync_t	type;	/*<! type of hash_table. */ //同步类型 比如使用读写锁 使用 mutext互斥体等等
 #if defined UNIV_AHI_DEBUG || defined UNIV_DEBUG
 # ifndef UNIV_HOTBACKUP
 	ibool			adaptive;/* TRUE if this is the hash
@@ -538,8 +549,8 @@ struct hash_table_t {
 					index */
 # endif /* !UNIV_HOTBACKUP */
 #endif /* UNIV_AHI_DEBUG || UNIV_DEBUG */
-	ulint			n_cells;/* number of cells in the hash table */
-	hash_cell_t*		array;	/*!< pointer to cell array */
+	ulint			n_cells;/* number of cells in the hash table */ //桶个数
+	hash_cell_t*		array;	/*!< pointer to cell array */ //hash桶数组
 #ifndef UNIV_HOTBACKUP
 	ulint			n_sync_obj;/* if sync_objs != NULL, then
 					the number of either the number

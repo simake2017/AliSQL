@@ -45,27 +45,33 @@ extern "C" {
 /* flags for hash_init */
 #define HASH_UNIQUE     1       /* hash_insert fails on duplicate key */
 
-struct st_hash;
+struct st_hash; //声明 st_hash结构体
 typedef uint my_hash_value_type;
-typedef uchar *(*my_hash_get_key)(const uchar *,size_t*,my_bool);
+typedef uchar *(*my_hash_get_key)(const uchar *,size_t*,my_bool); //用于 设置生成key 的函数
 typedef void (*my_hash_free_key)(void *);
 /**
   Function type representing a hash function to be used with the HASH
   container.
   Should accept pointer to HASH, pointer to key buffer and key length
   as parameters.
+
+  wangyang 这里说的很清楚 接收容器指针 以及 key 指针 以及key length
+  用于获取 hash_value_type (int) 类型
 */
 typedef my_hash_value_type (*my_hash_function)(const struct st_hash *,
                                                const uchar *,
                                                size_t);
 
+/**
+ * wangyang ** 为类型起别名 st_hash
+ */
 typedef struct st_hash {
   size_t key_offset,key_length;		/* Length of key if const length */
   size_t blength;
   ulong records;
   uint flags;
   DYNAMIC_ARRAY array;				/* Place for hash_keys */
-  my_hash_get_key get_key;
+  my_hash_get_key get_key; //wangyang 这里会存在 get_key 函数
   void (*free)(void *);
   CHARSET_INFO *charset;
   my_hash_function hash_function;

@@ -584,6 +584,7 @@ struct dict_index_t{
 	index_id_t	id;	/*!< id of the index */
 	rw_lock_t*	search_latch; /*!< latch protecting the AHI partition
 				      corresponding to this index */
+				      //wangyang @@ dict 对应的 hash_table_t结构
 	hash_table_t*	search_table; /*!< hash table protected by
 				      search_latch */
 	mem_heap_t*	heap;	/*!< memory heap */

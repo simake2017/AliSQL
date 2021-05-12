@@ -649,8 +649,8 @@ create_insert_stmt_from_insert_delayed(THD *thd, String *buf)
 */
 
 bool mysql_insert(THD *thd,TABLE_LIST *table_list,
-                  List<Item> &fields,
-                  List<List_item> &values_list,
+                  List<Item> &fields, //wangyang insert 的字段
+                  List<List_item> &values_list, //wangyang insert的值 每个 List_item 代表一个 插入项的值
                   List<Item> &update_fields,
                   List<Item> &update_values,
                   enum_duplicates duplic,
@@ -744,7 +744,7 @@ bool mysql_insert(THD *thd,TABLE_LIST *table_list,
   thd->lex->used_tables=0;
 
   List_iterator_fast<List_item> its(values_list);
-  List_item *values= its++;
+  List_item *values= its++; //wangyang 表示第一个 插入项
   const uint value_count= values->elements;
   TABLE *table= NULL;
   if (mysql_prepare_insert(thd, table_list, table, fields, values,
@@ -824,10 +824,17 @@ bool mysql_insert(THD *thd,TABLE_LIST *table_list,
   }
 #endif /* WITH_PARTITION_STORAGE_ENGINE */
 
+    /*
+     *
+     wangyang 对每条记录调用 write_record
+
+        这里 当next 下一个 没有 为 null 的时候 就不会在执行这个循环了
+
+     */
   while ((values= its++))
   {
     counter++;
-    if (values->elements != value_count)
+    if (values->elements != value_count) //wangyang 这一行表示 如果 数量与 值数量 不相等 说明报错
     {
       my_error(ER_WRONG_VALUE_COUNT_ON_ROW, MYF(0), counter);
       goto exit_without_my_ok;
@@ -1069,6 +1076,9 @@ bool mysql_insert(THD *thd,TABLE_LIST *table_list,
     }
     else
 #endif
+    /**
+     * wangyang 这里 真正的写入 数据
+     */
       error= write_record(thd, table, &info, &update);
     if (error)
       break;
@@ -1928,6 +1938,9 @@ int write_record(THD *thd, TABLE *table, COPY_INFO *info, COPY_INFO *update)
         table->write_set != save_write_set)
       table->column_bitmaps_set(save_read_set, save_write_set);
   }
+  /**
+   * wangyang 这里会调用 存储引擎 相关接口
+   */
   else if ((error=table->file->ha_write_row(table->record[0])))
   {
     DEBUG_SYNC(thd, "write_row_noreplace");
