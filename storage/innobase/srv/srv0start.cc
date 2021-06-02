@@ -1849,6 +1849,9 @@ innobase_start_or_create_for_mysql(void)
 		srv_buf_pool_instances = 1;
 	}
 
+	/**
+	 * wangyang @@ innobase Æô¶¯
+	 */
 	srv_boot();
 
 	ib_logf(IB_LOG_LEVEL_INFO,

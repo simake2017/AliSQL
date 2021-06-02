@@ -458,7 +458,7 @@ buf_block_alloc(
 	if (buf_pool == NULL) {
 		/* We are allocating memory from any buffer pool, ensure
 		we spread the grace on all buffer pool instances. */
-		index = buf_pool_index++ % srv_buf_pool_instances;
+		index = buf_pool_index++ % srv_buf_pool_instances; // 寻找某个 instance
 		buf_pool = buf_pool_from_array(index);
 	}
 
@@ -1490,6 +1490,9 @@ buf_pool_init(
 	}
 #endif // HAVE_LIBNUMA
 
+/**
+ * wangyang @@ 这里进行计算，
+ */
 	buf_pool_ptr = (buf_pool_t*) mem_zalloc(
 		n_instances * sizeof *buf_pool_ptr);
 

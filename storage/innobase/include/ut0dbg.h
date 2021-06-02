@@ -70,7 +70,7 @@ ut_dbg_assertion_failed(
 	if (UT_DBG_FAIL(EXPR)) {				\
 		ut_dbg_assertion_failed(#EXPR,			\
 				__FILE__, (ulint) __LINE__);	\
-		UT_DBG_PANIC;					\
+		UT_DBk'kG_PANIC;					\
 	}							\
 } while (0)
 

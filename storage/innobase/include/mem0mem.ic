@@ -460,6 +460,9 @@ mem_heap_create_func(
 
 #ifdef UNIV_MEM_DEBUG
 
+    /*
+        wangyang 这里是插入到相应的hash 当中，会按照文件名称 以及 line 进行hash
+    */
 	mem_hash_insert(block, file_name, line);
 
 #endif

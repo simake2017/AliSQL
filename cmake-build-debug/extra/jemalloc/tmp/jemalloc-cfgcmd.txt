@@ -1,1 +1,1 @@
-cmd='/Users/wangyang/CLionProjects/AliSQL/extra/jemalloc/configure;CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc ;--with-private-namespace=jemalloc_internal_;--enable-cc-silence'
+cmd='/Users/wangyang/CLionProjects/AliSQL/AliSQL/extra/jemalloc/configure;CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc ;--with-private-namespace=jemalloc_internal_;--enable-cc-silence'

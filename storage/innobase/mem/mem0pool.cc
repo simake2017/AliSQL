@@ -226,11 +226,16 @@ mem_pool_create(
 	ulint		i;
 	ulint		used;
 
+	/**
+	 * wangyang 这里 malloc 分配了一个  mem_pool_t 对象
+	 */
 	pool = static_cast<mem_pool_t*>(ut_malloc(sizeof(mem_pool_t)));
 
 	pool->buf = static_cast<byte*>(ut_malloc_low(size, TRUE));
 	pool->size = size;
 
+	//wangyang @ 用于创建 一个 mutex 对象
+	// mem_pool_mutex_key 对应的 对应的值 mem_pool_mutex ，用于对应 mutex 的名称
 	mutex_create(mem_pool_mutex_key, &pool->mutex, SYNC_MEM_POOL);
 
 	/* Initialize the free lists */

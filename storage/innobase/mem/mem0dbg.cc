@@ -142,6 +142,9 @@ mem_field_trailer_get_check(byte* field)
 #ifndef UNIV_HOTBACKUP
 /******************************************************************//**
 Initializes the memory system. */
+/**
+ * wangyang 这个函数说的 很清楚，用于初始 innodb 内存系统
+ */
 UNIV_INTERN
 void
 mem_init(
@@ -174,7 +177,10 @@ mem_init(
 		size = 1;
 	}
 
-	mem_comm_pool = mem_pool_create(size);
+	/**
+	 * wangyang @@@ 这里用于创建 内存池
+	 */
+	mem_comm_pool = mem_pool_create(size); //这里创建 公共内存池
 }
 
 /******************************************************************//**

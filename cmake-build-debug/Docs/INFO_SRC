@@ -1,8 +1,8 @@
-commit: 13502c1cde1b82104c2c59f9da6f0a7a460828f4
-date: 2018-05-01 16:46:19 +0800
-build-date: 2021-05-10 21:29:25 +0800 
-short: 13502c1cde
-branch: master
+commit: 4f02adb26c22aa60ccc48c8b09f1087eb70af7cd
+date: 2021-05-12 23:56:44 +0800
+build-date: 2021-06-01 15:14:41 +0800 
+short: 4f02adb26c
+branch: annotation
 
 
 MySQL source 5.6.32

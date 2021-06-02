@@ -1038,7 +1038,7 @@ srv_general_init(void)
 	recv_sys_var_init();
 	os_sync_init();
 	sync_init();
-	mem_init(srv_mem_pool_size);
+	mem_init(srv_mem_pool_size); //wangyang @@ ÄÚ´æ³Ø³õÊ¼»¯
 	que_init();
 	row_mysql_init();
 }

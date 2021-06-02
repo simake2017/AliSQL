@@ -332,6 +332,9 @@ mem_heap_create_block_func(
 
 		ut_ad(type == MEM_HEAP_DYNAMIC || n <= MEM_MAX_ALLOC_IN_BUF);
 
+		/**
+		 * wangyang @@@ 这里可以看到 mem_block_t 是从 mem_area 进行分离出来的
+		 */
 		block = static_cast<mem_block_t*>(
 			mem_area_alloc(&len, mem_comm_pool));
 	} else {

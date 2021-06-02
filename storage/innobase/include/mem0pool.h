@@ -37,6 +37,9 @@ struct mem_pool_t;
 extern mem_pool_t*	mem_comm_pool;
 
 /** Memory area header */
+/**
+ * wangyang @@ ÉùÃ÷ÄÚ´æÍ·
+ */
 struct mem_area_t{
 	ulint		size_and_free;	/*!< memory area size is obtained by
 					anding with ~MEM_AREA_FREE; area in
