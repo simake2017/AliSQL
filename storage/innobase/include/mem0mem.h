@@ -406,6 +406,9 @@ struct mem_block_info_t {
 			node and is set to ULINT_UNDEFINED in others. */
 	ulint	type;	/*!< type of heap: MEM_HEAP_DYNAMIC, or
 			MEM_HEAP_BUF possibly ORed to MEM_HEAP_BTR_SEARCH */
+	/**
+	 * wangyang @@ 这里是 空闲内存的地址
+	 */
 	ulint	free;	/*!< offset in bytes of the first free position for
 			user data in the block */
 	ulint	start;	/*!< the value of the struct field 'free' at the

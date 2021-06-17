@@ -1978,6 +1978,7 @@ innobase_start_or_create_for_mysql(void)
 	ib_logf(IB_LOG_LEVEL_INFO,
 		"Initializing buffer pool, size = %.1f%c", size, unit);
 
+	//wangyang @@ 这里会创建 buf pool 以及 buf pool instances
 	err = buf_pool_init(srv_buf_pool_size, srv_buf_pool_instances);
 
 	if (err != DB_SUCCESS) {

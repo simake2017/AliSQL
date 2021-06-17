@@ -241,7 +241,7 @@
 #define HAVE_RINT 1
 /* #undef HAVE_RWLOCK_INIT */
 #define HAVE_SCHED_YIELD 1
-/* #undef HAVE_SELECT */
+#define HAVE_SELECT 1
 /* #undef HAVE_SETFD */
 #define HAVE_SETENV 1
 #define HAVE_SETLOCALE 1
