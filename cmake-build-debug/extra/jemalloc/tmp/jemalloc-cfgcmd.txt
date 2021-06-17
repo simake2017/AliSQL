@@ -1,1 +1,0 @@
-cmd='/Users/wangyang/CLionProjects/mysql/AliSQL/extra/jemalloc/configure;CC=/Library/Developer/CommandLineTools/usr/bin/cc ;--with-private-namespace=jemalloc_internal_;--enable-cc-silence'
